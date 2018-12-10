@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#1-carregamento de dados. 2-Tratamento de valores inconsistentes. 3-Tratamento de valores faltantes. 4- Escalonamento de atributos. 5-Transformação de variáveis categóricas 
+#1-carregamento de dados. 2-Tratamento de valores inconsistentes. 3-Tratamento de valores faltantes. 4- Escalonamento de atributos
 import pandas as pd
 pd.set_option("display.max_columns", 8)
 base = pd.read_csv('bases/credit-data.csv')
@@ -23,12 +23,12 @@ classe = base.iloc[:, 4]#todas as linhas, e a coluna no index 4
 
 
 #tratamento de valores null com sklearn
-from sklearn.preprocessing import Imputer#O imputer colocará um valor de entrada.
-imputer = Imputer(missing_values='NaN', strategy='mean', axis=0)#ctrl + i para informações.
+from sklearn.preprocessing import Imputer
+imputer = Imputer(missing_values='NaN', strategy='mean', axis=0)
 imputer = imputer.fit(previsores[:, 0:3])
 previsores[:, 0:3] = imputer.transform(previsores[:, 0:3])
 
-#Escalonamento de Atributos. Temos duas possíveis formas de escalonar: padronização e normalização. Com isso os algoritmos não farão cálculos matemáticos com números muito grandes.
+#Escalonamento de Atributos. Podemos escalonar através de padronização e normalização. Com isso os algoritmos não farão cálculos matemáticos com números muito grandes.
 #Padronização: x = x - média(x)/desvio padrão(x). Normalização: x = x - mínimo(x)/máximo(x)-mínimo(x)
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()

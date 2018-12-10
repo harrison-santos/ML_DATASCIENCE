@@ -35,3 +35,4 @@ scaler = StandardScaler()
 previsores = scaler.fit_transform(previsores)
 
 
+

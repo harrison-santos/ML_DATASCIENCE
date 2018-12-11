@@ -6,7 +6,7 @@ base = pd.read_csv('bases/credit-data.csv')
 base.describe()
 
 
-#1) valores inconsistentes. Valores negativos em idade. 
+#1) Valores inconsistentes: valores negativos em idade. 
 #Possíveis Passos: Apagar os registros com problemas, preencher manualmente, preencher valores com a média/mediana/most_frequent.
 base.loc[base['age'] < 0]
 base.mean()#faz a média com valores negativos
@@ -14,7 +14,7 @@ age_mean = base['age'][base.age > 0].mean()
 base.loc[base.age < 0, 'age'] = age_mean 
 base.loc[base['age'] < 0]#valor corrigido
 
-#2) valores faltantes
+#2) Valores faltantes
 pd.isnull(base['age'])
 base.loc[pd.isnull(base['age'])]
 
@@ -28,7 +28,7 @@ imputer = Imputer(missing_values='NaN', strategy='mean', axis=0)
 imputer = imputer.fit(previsores[:, 0:3])
 previsores[:, 0:3] = imputer.transform(previsores[:, 0:3])
 
-#Escalonamento de Atributos. Podemos escalonar através de padronização e normalização. Com isso os algoritmos não farão cálculos matemáticos com números muito grandes.
+#Escalonamento de Atributos. Podemos escalonar através de padronização,ou também normalização. Com isso os algoritmos não farão cálculos matemáticos com números muito grandes.
 #Padronização: x = x - média(x)/desvio padrão(x). Normalização: x = x - mínimo(x)/máximo(x)-mínimo(x)
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
